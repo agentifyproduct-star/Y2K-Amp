@@ -1,0 +1,49 @@
+{
+  "name": "y2k-amp",
+  "version": "0.1.0",
+  "description": "Y2K Amp - a classic retro-styled desktop music player",
+  "main": "main.js",
+  "author": "Rahul Agarwal",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^44.4.1",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "music-metadata": "^11.15.0"
+  },
+  "build": {
+    "appId": "com.rahulagarwal.y2kamp",
+    "productName": "Y2K Amp",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "artifactName": "${productName} Setup ${version} ${arch}.${ext}",
+      "license": "LICENSE.txt"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.music"
+    },
+    "dmg": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    }
+  }
+}

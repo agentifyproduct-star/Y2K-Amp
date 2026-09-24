@@ -1,0 +1,7 @@
+node_modules/
+build/
+dist/
+.claude/
+
+# Copyrighted test audio - not part of the app source
+docs/*.mp3

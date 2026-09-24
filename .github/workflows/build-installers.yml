@@ -1,0 +1,70 @@
+name: Build Installers
+
+# Manual trigger only - regular commits/pushes never run this. Start it from
+# the Actions tab ("Run workflow") or `gh workflow run build-installers.yml`
+# whenever you actually want fresh installers built.
+on:
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      # Built as two separate invocations rather than `--x64 --arm64` together -
+      # electron-builder's combined multi-arch NSIS bundle tries to shell out to
+      # Wine for the uninstaller, which fails since there's no Wine on Windows.
+      # --publish never: electron-builder auto-detects CI and otherwise tries to
+      # publish a GitHub Release, which fails without a GH_TOKEN - we only want
+      # the local build artifacts here, not an auto-publish.
+      - run: npx electron-builder --win --x64 --publish never
+      - run: npx electron-builder --win --arm64 --publish never
+
+      # Uploaded separately per arch so each is its own download, rather than
+      # one zip containing both installers.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: y2k-amp-windows-x64
+          path: build/*x64.exe
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: y2k-amp-windows-arm64
+          path: build/*arm64.exe
+
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      # No Apple Developer certificate configured, so skip code-signing
+      # discovery - otherwise electron-builder fails looking for one.
+      # --publish never: see the comment in build-windows above.
+      - run: npx electron-builder --mac --x64 --arm64 --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      # Uploaded separately per arch so each is its own download, rather than
+      # one zip containing both installers.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: y2k-amp-mac-x64
+          path: build/*x64.dmg
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: y2k-amp-mac-arm64
+          path: build/*arm64.dmg

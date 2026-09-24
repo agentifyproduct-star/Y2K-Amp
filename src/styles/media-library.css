@@ -1,0 +1,183 @@
+.library-panel {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  border-top: none;
+}
+
+.library-panel.open {
+  display: flex;
+}
+
+.library-panel-header {
+  height: 26px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 6px 0 10px;
+  background: linear-gradient(180deg, var(--header-bg-1) 0%, var(--header-bg-2) 50%, var(--header-bg-3) 100%);
+}
+
+.library-panel-title {
+  flex: 1;
+  color: var(--header-text);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.library-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: linear-gradient(180deg, var(--strip-bg-1) 0%, var(--strip-bg-2) 100%);
+  border-bottom: 1px solid var(--strip-border);
+}
+
+.search-input {
+  flex: 1 1 90px;
+  min-width: 0;
+  padding: 3px 6px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 2px;
+  color: var(--text-primary);
+  font-size: 12px;
+}
+
+.search-input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.clear-search-btn {
+  padding: 3px 10px;
+  border: 1px solid var(--btn-border);
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--btn-bg-2), var(--btn-bg-3));
+  color: var(--btn-text);
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ---------- Table ---------- */
+.library-table-wrapper {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background: var(--table-bg);
+}
+
+.library-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.library-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.library-table th {
+  text-align: left;
+  padding: 4px 8px;
+  background: linear-gradient(180deg, var(--strip-bg-1), var(--strip-bg-2));
+  border: 1px solid var(--strip-border);
+  border-top: none;
+  font-weight: bold;
+  color: var(--text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.library-table th.sort-asc::after {
+  content: ' \25B2';
+}
+
+.library-table th.sort-desc::after {
+  content: ' \25BC';
+}
+
+.library-table td {
+  padding: 3px 8px;
+  border-bottom: 1px solid var(--strip-bg-1);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.library-table tbody tr:nth-child(even) {
+  background: var(--table-row-even);
+}
+
+.library-table tbody tr:hover {
+  background: var(--table-row-hover);
+}
+
+.library-table tbody tr.selected {
+  background: var(--accent-solid);
+  color: var(--selected-text);
+}
+
+/* .library-table td sets its own color, which as a rule on the cell itself
+   takes priority over the inherited color from tr.selected above - so the
+   override has to target the cells directly, not just the row. */
+.library-table tbody tr.selected td {
+  color: var(--selected-text);
+}
+
+.library-empty-state {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 13px;
+  padding: 20px;
+  display: none;
+}
+
+.library-status-bar {
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: linear-gradient(180deg, var(--strip-bg-1) 0%, var(--strip-bg-2) 100%);
+  border-top: 1px solid var(--strip-border);
+}
+
+/* ---------- Context menu ---------- */
+.context-menu {
+  display: none;
+  position: fixed;
+  min-width: 160px;
+  background: var(--dropdown-bg);
+  border: 1px solid var(--dropdown-border);
+  border-radius: 3px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.context-menu.open {
+  display: block;
+}
+
+.context-menu-item {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.context-menu-item:hover {
+  background: var(--accent-1);
+  color: #fff;
+}

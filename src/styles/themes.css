@@ -1,0 +1,395 @@
+/* Built-in color themes. Each overrides the default (dark) variables
+   defined in :root (main-window.css) when its class is applied to <body>. */
+
+.theme-dark {
+  --panel-bg-top: #3a3f47;
+  --panel-bg-bottom: #202329;
+  --panel-border: #15171a;
+
+  --header-bg-1: #3a5580;
+  --header-bg-2: #16283f;
+  --header-bg-3: #1d3454;
+  --header-text: #dbe6f5;
+
+  --strip-bg-1: #2c3038;
+  --strip-bg-2: #1c1f24;
+  --strip-border: #111318;
+  --strip-text: #c5ccd4;
+
+  --btn-bg-1: #6a7078;
+  --btn-bg-2: #3a3f47;
+  --btn-bg-3: #202329;
+  --btn-border: #0d0f12;
+  --btn-text: #d8dee5;
+  --btn-hover-1: #6a7078;
+  --btn-hover-2: #3a3e44;
+
+  --track-bg-1: #2a2e34;
+  --track-bg-2: #454b54;
+  --track-border: #15171a;
+  --handle-bg-1: #d5dce4;
+  --handle-bg-2: #7c828a;
+  --handle-border: #15171a;
+  --divider: #15171a;
+
+  --accent-1: #6fa8ff;
+  --accent-2: #2f66c9;
+  --accent-solid: #3f7fd6;
+  --accent-light: #8ab4f8;
+  --accent-highlight: #8fc2ff;
+  --selected-text: #ffffff;
+
+  --text-primary: #d8dee5;
+  --text-secondary: #c5ccd4;
+  --text-muted: #8b95a3;
+  --text-faint: #7a8492;
+
+  --input-bg: #1c1f24;
+  --input-border: #4a5058;
+  --input-placeholder: #6b7480;
+  --table-bg: #1c1f24;
+  --table-row-even: #22262c;
+  --table-row-hover: #2f3a4a;
+  --dropdown-bg: #2c3038;
+  --dropdown-border: #4a5058;
+}
+
+.theme-classic {
+  --panel-bg-top: #dfe6ee;
+  --panel-bg-bottom: #b9c4d1;
+  --panel-border: #5a6b80;
+
+  --header-bg-1: #4a6fa5;
+  --header-bg-2: #1f3a5f;
+  --header-bg-3: #2c4870;
+  --header-text: #eaf1fb;
+
+  --strip-bg-1: #f4f7fb;
+  --strip-bg-2: #dbe3ec;
+  --strip-border: #9aa9bc;
+  --strip-text: #1f2d3d;
+
+  --btn-bg-1: #ffffff;
+  --btn-bg-2: #b9c4d1;
+  --btn-bg-3: #8b99ab;
+  --btn-border: #5a6b80;
+  --btn-text: #1f2d3d;
+  --btn-hover-1: #ffffff;
+  --btn-hover-2: #c4d2e2;
+
+  --track-bg-1: #7c8ba0;
+  --track-bg-2: #c7d2df;
+  --track-border: #5a6b80;
+  --handle-bg-1: #ffffff;
+  --handle-bg-2: #a9bad0;
+  --handle-border: #5a6b80;
+  --divider: #445266;
+
+  --accent-1: #6fa8ff;
+  --accent-2: #2f66c9;
+  --accent-solid: #3f7fd6;
+  --accent-light: #17417a;
+  --accent-highlight: #8fc2ff;
+  --selected-text: #ffffff;
+
+  --text-primary: #1f2d3d;
+  --text-secondary: #1f2d3d;
+  --text-muted: #445266;
+  --text-faint: #6b7a8c;
+
+  --input-bg: #ffffff;
+  --input-border: #5a6b80;
+  --input-placeholder: #8a94a0;
+  --table-bg: #ffffff;
+  --table-row-even: #eef3f9;
+  --table-row-hover: #d7e6f9;
+  --dropdown-bg: #f4f7fb;
+  --dropdown-border: #5a6b80;
+}
+
+.theme-amber {
+  --panel-bg-top: #3a352a;
+  --panel-bg-bottom: #201d17;
+  --panel-border: #100e0a;
+
+  --header-bg-1: #7a5a1e;
+  --header-bg-2: #40300f;
+  --header-bg-3: #573f13;
+  --header-text: #ffe9c2;
+
+  --strip-bg-1: #33301f;
+  --strip-bg-2: #211f14;
+  --strip-border: #100f09;
+  --strip-text: #d8c9a3;
+
+  --btn-bg-1: #a08858;
+  --btn-bg-2: #4a3f2a;
+  --btn-bg-3: #262016;
+  --btn-border: #0f0d08;
+  --btn-text: #ffe9c2;
+  --btn-hover-1: #b89c60;
+  --btn-hover-2: #5a4c33;
+
+  --track-bg-1: #33301f;
+  --track-bg-2: #524a34;
+  --track-border: #100f09;
+  --handle-bg-1: #e8d5ab;
+  --handle-bg-2: #8a7752;
+  --handle-border: #100f09;
+  --divider: #100f09;
+
+  --accent-1: #e08a2b;
+  --accent-2: #a85f12;
+  --accent-solid: #c4711d;
+  --accent-light: #ffcf8a;
+  --accent-highlight: #ffcf8a;
+  --selected-text: #ffffff;
+
+  --text-primary: #ffe9c2;
+  --text-secondary: #d8c9a3;
+  --text-muted: #a3906a;
+  --text-faint: #8a7a5c;
+
+  --input-bg: #211f14;
+  --input-border: #524a34;
+  --input-placeholder: #7a6a4a;
+  --table-bg: #211f14;
+  --table-row-even: #2a2718;
+  --table-row-hover: #453820;
+  --dropdown-bg: #33301f;
+  --dropdown-border: #524a34;
+}
+
+/* Inspired by a classic purple/yellow retro skin look -
+   deep violet chrome with bright yellow EQ sliders and neon-green LCD text. */
+.theme-llama {
+  --panel-bg-top: #4a4570;
+  --panel-bg-bottom: #2a2550;
+  --panel-border: #1a1638;
+
+  --header-bg-1: #5a5580;
+  --header-bg-2: #2a2550;
+  --header-bg-3: #363060;
+  --header-text: #e8e4ff;
+
+  --strip-bg-1: #4a4570;
+  --strip-bg-2: #302a58;
+  --strip-border: #1a1638;
+  --strip-text: #d4cff0;
+
+  --btn-bg-1: #6a6590;
+  --btn-bg-2: #423c68;
+  --btn-bg-3: #262048;
+  --btn-border: #14102c;
+  --btn-text: #e8e4ff;
+  --btn-hover-1: #7a75a0;
+  --btn-hover-2: #524c78;
+
+  --track-bg-1: #262048;
+  --track-bg-2: #423c68;
+  --track-border: #14102c;
+  --handle-bg-1: #f5d020;
+  --handle-bg-2: #c4a010;
+  --handle-border: #1a1638;
+  --divider: #1a1638;
+
+  --accent-1: #f0d020;
+  --accent-2: #c4a010;
+  --accent-solid: #d9b818;
+  --accent-light: #33ff66;
+  --accent-highlight: #ffe580;
+  --selected-text: #1a1638;
+
+  --text-primary: #e8e4ff;
+  --text-secondary: #d4cff0;
+  --text-muted: #9088b8;
+  --text-faint: #7a7098;
+
+  --input-bg: #1a1638;
+  --input-border: #423c68;
+  --input-placeholder: #6a6590;
+  --table-bg: #1a1638;
+  --table-row-even: #241f44;
+  --table-row-hover: #3a3460;
+  --dropdown-bg: #302a58;
+  --dropdown-border: #423c68;
+}
+
+/* Inspired by a Yoda / Star Wars space poster - deep space navy-black
+   with sage-green (Yoda) accents and a red (lightsaber) active-toggle glow. */
+.theme-jedi {
+  --panel-bg-top: #232838;
+  --panel-bg-bottom: #10121c;
+  --panel-border: #05060a;
+
+  --header-bg-1: #2e3548;
+  --header-bg-2: #12141f;
+  --header-bg-3: #1a1e2c;
+  --header-text: #dce6d8;
+
+  --strip-bg-1: #1c2030;
+  --strip-bg-2: #0f111a;
+  --strip-border: #05060a;
+  --strip-text: #b8c4b0;
+
+  --btn-bg-1: #5c6b52;
+  --btn-bg-2: #2e3528;
+  --btn-bg-3: #161811;
+  --btn-border: #05060a;
+  --btn-text: #dce6d8;
+  --btn-hover-1: #6e8060;
+  --btn-hover-2: #3a4432;
+
+  --track-bg-1: #1c2030;
+  --track-bg-2: #2e3548;
+  --track-border: #05060a;
+  --handle-bg-1: #dce6d8;
+  --handle-bg-2: #8a9a80;
+  --handle-border: #05060a;
+  --divider: #05060a;
+
+  --accent-1: #6b8f47;
+  --accent-2: #3f5c28;
+  --accent-solid: #55763a;
+  --accent-light: #a8c890;
+  --accent-highlight: #c23b3b;
+  --selected-text: #ffffff;
+
+  --text-primary: #dce6d8;
+  --text-secondary: #b8c4b0;
+  --text-muted: #7e8a76;
+  --text-faint: #666f5e;
+
+  --input-bg: #0f111a;
+  --input-border: #2e3548;
+  --input-placeholder: #5a6252;
+  --table-bg: #0f111a;
+  --table-row-even: #161927;
+  --table-row-hover: #263020;
+  --dropdown-bg: #1c2030;
+  --dropdown-border: #2e3548;
+}
+
+/* Inspired by the Matrix digital-rain image - near-black background with
+   neon green everywhere, minimal other color. */
+.theme-matrix {
+  --panel-bg-top: #0d1f0d;
+  --panel-bg-bottom: #000800;
+  --panel-border: #001a00;
+
+  --header-bg-1: #0a2a0a;
+  --header-bg-2: #001400;
+  --header-bg-3: #002200;
+  --header-text: #66ff66;
+
+  --strip-bg-1: #0a1a0a;
+  --strip-bg-2: #000c00;
+  --strip-border: #001a00;
+  --strip-text: #33cc33;
+
+  --btn-bg-1: #1a4d1a;
+  --btn-bg-2: #0a1f0a;
+  --btn-bg-3: #000f00;
+  --btn-border: #000a00;
+  --btn-text: #66ff66;
+  --btn-hover-1: #2a6b2a;
+  --btn-hover-2: #143014;
+
+  --track-bg-1: #001400;
+  --track-bg-2: #1a3d1a;
+  --track-border: #000a00;
+  --handle-bg-1: #99ff99;
+  --handle-bg-2: #33cc33;
+  --handle-border: #000a00;
+  --divider: #000a00;
+
+  --accent-1: #33ff33;
+  --accent-2: #009900;
+  --accent-solid: #22cc22;
+  --accent-light: #99ff99;
+  --accent-highlight: #ccffcc;
+  --selected-text: #001400;
+
+  --text-primary: #66ff66;
+  --text-secondary: #33cc33;
+  --text-muted: #227722;
+  --text-faint: #1a5a1a;
+
+  --input-bg: #000c00;
+  --input-border: #1a3d1a;
+  --input-placeholder: #227722;
+  --table-bg: #000c00;
+  --table-row-even: #061206;
+  --table-row-hover: #0f280f;
+  --dropdown-bg: #0a1a0a;
+  --dropdown-border: #1a3d1a;
+}
+
+/* ---------- Photo-backed skins ----------
+   Jedi and Matrix use the actual reference images as a background behind
+   the panels, in the style of classic photographic MP3-player skins.
+   Panels become a translucent tint so the image shows through, while
+   buttons/sliders/text stay fully opaque. */
+.theme-jedi .app-shell::before {
+  background-image: linear-gradient(rgba(8, 10, 16, 0.6), rgba(8, 10, 16, 0.6)), url('../assets/skins/jedi.webp');
+}
+
+.theme-jedi .panel {
+  background: rgba(20, 24, 34, 0.55);
+}
+
+.theme-matrix .app-shell::before {
+  background-image: linear-gradient(rgba(0, 10, 0, 0.55), rgba(0, 10, 0, 0.55)), url('../assets/skins/matrix.webp');
+}
+
+.theme-matrix .panel {
+  background: rgba(4, 16, 4, 0.5);
+}
+
+/* ---------- Theme picker modal ---------- */
+.theme-modal-content {
+  min-width: 260px;
+}
+
+.theme-option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--dropdown-border);
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.theme-option:hover {
+  background: var(--table-row-hover);
+}
+
+.theme-option.selected {
+  border-color: var(--accent-1);
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.theme-option-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  flex-shrink: 0;
+}
+
+.theme-modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}

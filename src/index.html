@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' file: data:; media-src 'self' file: blob:; connect-src 'self' blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none';" />
+  <title>Y2K Amp</title>
+  <link rel="stylesheet" href="styles/main-window.css" />
+  <link rel="stylesheet" href="styles/equalizer.css" />
+  <link rel="stylesheet" href="styles/media-library.css" />
+  <link rel="stylesheet" href="styles/playlist.css" />
+  <link rel="stylesheet" href="styles/themes.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ===== Main Player Panel ===== -->
+    <div class="panel main-panel">
+
+      <div class="titlebar" id="drag-titlebar">
+        <div class="titlebar-logo">S</div>
+        <div class="titlebar-title">Y2K AMP</div>
+        <div class="titlebar-controls">
+          <button class="title-btn" id="btn-minimize" title="Minimize">&#95;</button>
+          <button class="title-btn" id="btn-maximize" title="Maximize">&#9633;</button>
+          <button class="title-btn title-btn-close" id="btn-close" title="Close">&#10005;</button>
+        </div>
+      </div>
+
+      <div class="menubar">
+        <span class="menu-item menu-item-dropdown" id="menu-file">
+          <u>F</u>ile
+          <div class="menu-dropdown" id="menu-file-dropdown">
+            <div class="menu-dropdown-item" id="menu-open-files">Open File(s)...</div>
+          </div>
+        </span>
+        <span class="menu-item menu-item-dropdown" id="menu-play">
+          <u>P</u>lay
+          <div class="menu-dropdown" id="menu-play-dropdown">
+            <div class="menu-dropdown-item" id="menu-play-play">Play</div>
+            <div class="menu-dropdown-item" id="menu-play-pause">Pause</div>
+            <div class="menu-dropdown-item" id="menu-play-stop">Stop</div>
+            <div class="menu-dropdown-item" id="menu-play-previous">Previous</div>
+            <div class="menu-dropdown-item" id="menu-play-next">Next</div>
+          </div>
+        </span>
+        <span class="menu-item menu-item-dropdown" id="menu-options">
+          <u>O</u>ptions
+          <div class="menu-dropdown" id="menu-options-dropdown">
+            <div class="menu-dropdown-item" id="menu-toggle-shuffle">Shuffle</div>
+            <div class="menu-dropdown-item" id="menu-toggle-repeat">Repeat</div>
+          </div>
+        </span>
+        <span class="menu-item menu-item-dropdown" id="menu-view">
+          <u>V</u>iew
+          <div class="menu-dropdown" id="menu-view-dropdown">
+            <div class="menu-dropdown-item" id="menu-toggle-library">Media Library</div>
+            <div class="menu-dropdown-item" id="menu-toggle-playlist">Playlist</div>
+            <div class="menu-dropdown-item" id="menu-color-themes">Color Themes...</div>
+          </div>
+        </span>
+        <span class="menu-item menu-item-dropdown" id="menu-help">
+          <u>H</u>elp
+          <div class="menu-dropdown" id="menu-help-dropdown">
+            <div class="menu-dropdown-item" id="menu-about">About Y2K Amp</div>
+          </div>
+        </span>
+      </div>
+
+      <div class="body-row">
+        <div class="lcd-column">
+          <div class="lcd-display">
+            <div class="lcd-top-row">
+              <span class="lcd-play-icon" id="lcd-play-icon">&#9654;</span>
+              <span class="lcd-time" id="lcd-time">0:00</span>
+
+              <div class="lcd-info-boxes">
+                <div class="lcd-box-row">
+                  <span class="lcd-label">KBPS</span>
+                  <span class="lcd-value-box" id="lcd-kbps">--</span>
+                  <span class="lcd-label">kHZ</span>
+                  <span class="lcd-value-box" id="lcd-khz">--</span>
+                </div>
+                <div class="lcd-box-row">
+                  <span class="lcd-value-box lcd-stereo" id="lcd-channels">--</span>
+                </div>
+              </div>
+
+              <canvas class="mini-spectrum" id="mini-spectrum" width="140" height="60"></canvas>
+            </div>
+
+            <div class="lcd-track-title" id="track-title">
+              <span id="track-title-text">No file loaded</span>
+            </div>
+          </div>
+
+          <div class="seek-row">
+            <div class="seek-bar" id="seek-bar" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="seek-fill" id="seek-fill"></div>
+              <div class="seek-handle" id="seek-handle"></div>
+            </div>
+            <div class="seek-side-buttons">
+              <button class="round-btn small-round" id="btn-eject" title="Open File(s)">&#9167;</button>
+              <button class="round-btn small-round" id="btn-playlist" title="Playlist">PL</button>
+              <button class="round-btn small-round" id="btn-media-library" title="Media Library">ML</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-toggle-column">
+          <button class="round-btn tiny-round" id="btn-options-toggle" title="Options">&#9660;</button>
+          <button class="round-btn tiny-round" id="btn-repeat" title="Repeat">&#8635;</button>
+          <button class="round-btn tiny-round" id="btn-shuffle" title="Shuffle">&#128256;</button>
+        </div>
+      </div>
+
+      <div class="transport-row">
+        <div class="transport-buttons">
+          <button class="round-btn transport-btn" id="btn-prev" title="Previous">&#9664;&#9664;</button>
+          <button class="round-btn transport-btn" id="btn-play" title="Play">&#9654;</button>
+          <button class="round-btn transport-btn" id="btn-pause" title="Pause">&#10073;&#10073;</button>
+          <button class="round-btn transport-btn" id="btn-stop" title="Stop">&#9632;</button>
+          <button class="round-btn transport-btn" id="btn-next" title="Next">&#9654;&#9654;</button>
+        </div>
+
+        <div class="balance-row">
+          <button class="round-btn tiny-round" id="btn-volume-reset" title="Reset Volume">&#9664;</button>
+          <div class="balance-slider" id="volume-slider" title="Volume" role="slider" tabindex="0" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+            <div class="balance-handle" id="volume-handle"></div>
+          </div>
+          <span class="config-label">CONFIG</span>
+          <span class="lightning-icon" title="Visualizer">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <line x1="1" y1="3" x2="15" y2="3" stroke="#e2483a" stroke-width="1.5" />
+              <line x1="1" y1="8" x2="15" y2="8" stroke="#e2483a" stroke-width="1.5" />
+              <line x1="1" y1="13" x2="15" y2="13" stroke="#e2483a" stroke-width="1.5" />
+              <line x1="8" y1="1" x2="8" y2="15" stroke="#e2483a" stroke-width="1.5" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Equalizer Panel ===== -->
+    <div class="panel eq-panel">
+
+      <div class="eq-header">
+        <div class="eq-curve-slider">
+          <div class="eq-curve-track"></div>
+          <div class="eq-curve-handle"></div>
+        </div>
+        <div class="eq-preset-nav">
+          <button class="round-btn tiny-round" title="Load">&#128194;</button>
+          <button class="round-btn tiny-round" title="Previous Preset">&#9664;</button>
+          <button class="round-btn tiny-round" title="Next Preset">&#9654;</button>
+        </div>
+      </div>
+
+      <div class="eq-body">
+        <div class="eq-left-column">
+          <button class="eq-toggle-btn active" id="eq-on">ON</button>
+          <button class="eq-toggle-btn" id="eq-auto">AUTO</button>
+          <div class="eq-presets-wrapper">
+            <button class="eq-toggle-btn" id="eq-presets">PRESETS</button>
+            <div class="menu-dropdown" id="eq-presets-dropdown">
+              <div class="menu-dropdown-item" data-preset="Flat">Flat</div>
+              <div class="menu-dropdown-item" data-preset="Rock">Rock</div>
+              <div class="menu-dropdown-item" data-preset="Pop">Pop</div>
+              <div class="menu-dropdown-item" data-preset="Jazz">Jazz</div>
+              <div class="menu-dropdown-item" data-preset="Classical">Classical</div>
+              <div class="menu-dropdown-item" data-preset="BassBoost">Bass Boost</div>
+              <div class="menu-dropdown-item" data-preset="TrebleBoost">Treble Boost</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="eq-preamp-column">
+          <div class="eq-preamp-row">
+            <div class="db-scale">
+              <span>+12 dB</span>
+              <span>- 0 dB</span>
+              <span>-12 dB</span>
+            </div>
+            <div class="eq-slider-track vertical-slider" id="preamp-slider" role="slider" tabindex="0" aria-label="Preamp" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0">
+              <div class="eq-slider-handle" style="top: 50%;"></div>
+            </div>
+          </div>
+          <span class="eq-band-label">PREAMP</span>
+        </div>
+
+        <div class="eq-bands">
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="0" role="slider" tabindex="0" aria-label="60 Hz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">60</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="1" role="slider" tabindex="0" aria-label="170 Hz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">170</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="2" role="slider" tabindex="0" aria-label="310 Hz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">310</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="3" role="slider" tabindex="0" aria-label="600 Hz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">600</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="4" role="slider" tabindex="0" aria-label="1 kHz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">1K</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="5" role="slider" tabindex="0" aria-label="3 kHz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">3K</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="6" role="slider" tabindex="0" aria-label="6 kHz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">6K</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="7" role="slider" tabindex="0" aria-label="12 kHz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">12K</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="8" role="slider" tabindex="0" aria-label="14 kHz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">14K</span>
+          </div>
+          <div class="eq-band">
+            <div class="eq-slider-track vertical-slider" data-band-index="9" role="slider" tabindex="0" aria-label="16 kHz band" aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0"><div class="eq-slider-handle" style="top: 50%;"></div></div>
+            <span class="eq-band-label">16K</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="eq-tabs">
+        <div class="eq-tab active">EQUALIZER</div>
+        <div class="eq-tab">OPTIONS</div>
+        <div class="eq-tab" id="eq-tab-color-themes">COLOR THEMES</div>
+      </div>
+    </div>
+
+    <!-- ===== Media Library Panel ===== -->
+    <div class="panel library-panel" id="library-panel">
+      <div class="library-panel-header">
+        <span class="library-panel-title">MEDIA LIBRARY</span>
+      </div>
+
+      <div class="library-toolbar">
+        <button class="clear-search-btn" id="ml-btn-add-folder">Add Folder...</button>
+        <input type="text" id="ml-search-input" class="search-input" placeholder="Search:" />
+        <button class="clear-search-btn" id="ml-btn-clear-search">Clear Search</button>
+      </div>
+
+      <div class="library-table-wrapper" tabindex="0">
+        <table class="library-table">
+          <thead>
+            <tr>
+              <th data-field="title">Title</th>
+              <th data-field="album">Album</th>
+              <th data-field="artist">Artist</th>
+              <th data-field="length">Duration</th>
+            </tr>
+          </thead>
+          <tbody id="ml-library-rows"></tbody>
+        </table>
+        <div class="library-empty-state" id="ml-empty-state">
+          No tracks yet. Use <b>Add Folder...</b> to scan your music.
+        </div>
+      </div>
+
+      <div class="library-status-bar" id="ml-status-bar">0 tracks</div>
+    </div>
+
+    <!-- ===== Playlist Panel ===== -->
+    <div class="panel library-panel playlist-panel" id="playlist-panel">
+      <div class="library-panel-header">
+        <span class="library-panel-title">PLAYLIST</span>
+      </div>
+
+      <div class="library-toolbar">
+        <button class="clear-search-btn" id="pl-btn-add-files">Add File(s)...</button>
+        <button class="clear-search-btn" id="pl-btn-clear">Clear Playlist</button>
+      </div>
+
+      <div class="library-table-wrapper" tabindex="0">
+        <ul class="playlist-list" id="playlist-list"></ul>
+        <div class="library-empty-state" id="pl-empty-state">
+          Playlist is empty. Use <b>Add File(s)...</b> or add tracks from the Media Library.
+        </div>
+      </div>
+
+      <div class="library-status-bar" id="pl-status-bar">0 tracks</div>
+    </div>
+
+  </div>
+
+  <div class="context-menu" id="ml-context-menu">
+    <div class="context-menu-item" data-action="add-to-playlist">Add to Playlist</div>
+    <div class="context-menu-item" data-action="play-now">Play Now</div>
+    <div class="context-menu-item" data-action="show-in-explorer">Show in Explorer</div>
+    <div class="context-menu-item" data-action="remove-from-library">Remove from Library</div>
+  </div>
+
+  <div class="about-modal" id="about-modal">
+    <div class="about-modal-content">
+      <div class="about-modal-title">Y2K AMP</div>
+      <div class="about-modal-body">
+        A classic retro-styled desktop music player.<br />
+        Built by Rahul Agarwal.
+      </div>
+      <button class="clear-search-btn" id="about-modal-close">OK</button>
+    </div>
+  </div>
+
+  <div class="about-modal" id="theme-modal">
+    <div class="about-modal-content theme-modal-content">
+      <div class="about-modal-title">COLOR THEMES</div>
+      <div class="theme-option-list" id="theme-option-list">
+        <div class="theme-option" data-theme="dark">
+          <span class="theme-option-swatch" style="background:#6fa8ff;"></span>
+          Dark (default)
+        </div>
+        <div class="theme-option" data-theme="classic">
+          <span class="theme-option-swatch" style="background:#4a6fa5;"></span>
+          Classic Blue/Silver
+        </div>
+        <div class="theme-option" data-theme="amber">
+          <span class="theme-option-swatch" style="background:#e08a2b;"></span>
+          Amber
+        </div>
+        <div class="theme-option" data-theme="llama">
+          <span class="theme-option-swatch" style="background:#f0d020;"></span>
+          Purple Llama
+        </div>
+        <div class="theme-option" data-theme="jedi">
+          <span class="theme-option-swatch" style="background:#6b8f47;"></span>
+          Jedi
+        </div>
+        <div class="theme-option" data-theme="matrix">
+          <span class="theme-option-swatch" style="background:#33ff33;"></span>
+          Matrix
+        </div>
+      </div>
+      <div class="theme-modal-actions">
+        <button class="clear-search-btn" id="theme-btn-load-custom">Load Custom...</button>
+        <button class="clear-search-btn" id="theme-btn-export">Export Current...</button>
+        <button class="clear-search-btn" id="theme-modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio-player" preload="metadata"></audio>
+
+  <script src="scripts/audio-engine.js"></script>
+  <script src="scripts/player.js"></script>
+  <script src="scripts/equalizer.js"></script>
+  <script src="scripts/visualizer.js"></script>
+  <script src="scripts/media-library.js"></script>
+  <script src="scripts/playlist-window.js"></script>
+  <script src="scripts/theme.js"></script>
+  <script src="scripts/ui.js"></script>
+</body>
+</html>

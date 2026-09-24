@@ -1,0 +1,28 @@
+Y2K Amp - Disclaimer and Terms of Use
+
+Y2K Amp is an independent, non-commercial personal project created by
+Rahul Agarwal. It is not affiliated with, endorsed by, or sponsored by
+any other software product or company, including any music player it
+may visually resemble in style.
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+This installer is not digitally signed. Your operating system may show
+a security warning before allowing installation; this is expected for
+independently distributed software and does not indicate a problem
+with the file.
+
+By clicking "I Agree" and installing Y2K Amp, you acknowledge that you
+have read this notice and agree to use the software at your own risk.
+
+This notice does not grant any rights to redistribute, modify, or
+otherwise use Y2K Amp's source code beyond running the installed
+application for personal use.
+
+(c) 2026 Rahul Agarwal. All rights reserved.
